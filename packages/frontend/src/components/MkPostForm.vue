@@ -190,10 +190,13 @@ SPDX-License-Identifier: AGPL-3.0-only
 	])
 	type Flavor = keyof {[K in (typeof flavors)[number]]: string}
 	const serving = asLiterals([
-		'Espresso Cup',
-		'Glass',
-		'Mug',
-		'Plastic Cup',
+		'Black',
+		'Cold Brew',
+		'Iced',
+		'Pod',
+		'Drip',
+		'French Press',
+		'Espresso',
 	])
 	type ServingType = keyof {[K in (typeof serving)[number]]: string}
 	const classification = asLiterals([
