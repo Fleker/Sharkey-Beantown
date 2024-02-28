@@ -99,11 +99,11 @@ export class MiUserProfile {
 	})
 	public publicReactions: boolean;
 
-	// @Column('enum', {
-	// 	enum: ffVisibility,
-	// 	default: 'public',
-	// })
-	// public ffVisibility: typeof ffVisibility[number];
+	@Column('enum', {
+		enum: ffVisibility,
+		default: 'public',
+	})
+	public ffVisibility: typeof ffVisibility[number];
 
 	@Column('varchar', {
 		length: 128, nullable: true,
