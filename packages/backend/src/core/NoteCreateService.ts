@@ -143,6 +143,13 @@ type Option = {
 	uri?: string | null;
 	url?: string | null;
 	app?: MiApp | null;
+	checkinCoffee?: string | null,
+	coffeeBrandLogo?: string | null,
+	coffeeBrandSource?: string | null,
+	coffeeBrandClass?: string | null,
+	checkinRating?: number | null,
+	checkinServing?: string | null,
+	checkinLocation?: string | null,
 };
 
 @Injectable()
@@ -576,6 +583,13 @@ export class NoteCreateService implements OnApplicationShutdown {
 			renoteUserId: data.renote ? data.renote.userId : null,
 			renoteUserHost: data.renote ? data.renote.userHost : null,
 			userHost: user.host,
+			checkinLabel: data.checkinCoffee ?? null,
+			checkinLogo: data.coffeeBrandLogo ?? null,
+			checkinSource: data.coffeeBrandSource ?? null,
+			checkinClass: data.coffeeBrandClass ?? null,
+			checkinRating: data.checkinRating ?? null,
+			checkinServing: data.checkinServing ?? null,
+			checkinLocation: data.checkinLocation ?? null,
 		});
 
 		if (data.uri != null) insert.uri = data.uri;

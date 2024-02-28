@@ -205,6 +205,50 @@ export class MiNote {
 	@JoinColumn()
 	public channel: MiChannel | null;
 
+	//#region Beantown checkin fields
+	@Column('float', {
+		default: 0,
+		comment: 'Checkin rating'
+	})
+	public checkinRating: number | null;
+
+	@Column('varchar', {
+		length: 256, nullable: true,
+		comment: 'Checkin label'
+	})
+	public checkinLabel: string | null;
+
+	@Column('varchar', {
+		length: 1024, nullable: true,
+		comment: 'Logo URL of coffee'
+	})
+	public checkinLogo: string | null;
+
+	@Column('varchar', {
+		length: 256, nullable: true,
+		comment: 'Manufacturer coffee'
+	})
+	public checkinSource: string | null;
+
+	@Column('varchar', {
+		length: 64, nullable: true,
+		comment: 'Classification'
+	})
+	public checkinClass: string | null;
+
+	@Column('varchar', {
+		length: 64, nullable: true,
+		comment: 'Serving style'
+	})
+	public checkinServing: string | null;
+
+	@Column('varchar', {
+		length: 256, nullable: true,
+		comment: 'Location of checkin'
+	})
+	public checkinLocation: string | null;
+	//#endregion
+
 	//#region Denormalized fields
 	@Index()
 	@Column('varchar', {
