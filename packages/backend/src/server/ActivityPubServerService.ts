@@ -195,15 +195,15 @@ export class ActivityPubServerService {
 		//#region Check ff visibility
 		const profile = await this.userProfilesRepository.findOneByOrFail({ userId: user.id });
 
-		if (profile.ffVisibility === 'private') {
-			reply.code(403);
-			reply.header('Cache-Control', 'public, max-age=30');
-			return;
-		} else if (profile.ffVisibility === 'followers') {
-			reply.code(403);
-			reply.header('Cache-Control', 'public, max-age=30');
-			return;
-		}
+		// if (profile.ffVisibility === 'private') {
+		// 	reply.code(403);
+		// 	reply.header('Cache-Control', 'public, max-age=30');
+		// 	return;
+		// } else if (profile.ffVisibility === 'followers') {
+		// 	reply.code(403);
+		// 	reply.header('Cache-Control', 'public, max-age=30');
+		// 	return;
+		// }
 		//#endregion
 
 		const limit = 10;
@@ -287,15 +287,15 @@ export class ActivityPubServerService {
 		//#region Check ff visibility
 		const profile = await this.userProfilesRepository.findOneByOrFail({ userId: user.id });
 
-		if (profile.ffVisibility === 'private') {
-			reply.code(403);
-			reply.header('Cache-Control', 'public, max-age=30');
-			return;
-		} else if (profile.ffVisibility === 'followers') {
-			reply.code(403);
-			reply.header('Cache-Control', 'public, max-age=30');
-			return;
-		}
+		// if (profile.ffVisibility === 'private') {
+		// 	reply.code(403);
+		// 	reply.header('Cache-Control', 'public, max-age=30');
+		// 	return;
+		// } else if (profile.ffVisibility === 'followers') {
+		// 	reply.code(403);
+		// 	reply.header('Cache-Control', 'public, max-age=30');
+		// 	return;
+		// }
 		//#endregion
 
 		const limit = 10;

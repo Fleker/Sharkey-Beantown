@@ -60,7 +60,8 @@ export class FeedService {
 			title: `${author.name} (@${user.username}@${this.config.host})`,
 			updated: this.idService.parse(notes[0].id).date,
 			generator: 'Sharkey',
-			description: `${user.notesCount} Notes, ${profile.ffVisibility === 'public' ? user.followingCount : '?'} Following, ${profile.ffVisibility === 'public' ? user.followersCount : '?'} Followers${profile.description ? ` · ${profile.description}` : ''}`,
+			// description: `${user.notesCount} Notes, ${profile.ffVisibility === 'public' ? user.followingCount : '?'} Following, ${profile.ffVisibility === 'public' ? user.followersCount : '?'} Followers${profile.description ? ` · ${profile.description}` : ''}`,
+			description: `${user.notesCount} Notes, ${user.followingCount} Following, ${user.followersCount} Followers${profile.description ? ` · ${profile.description}` : ''}`,
 			link: author.link,
 			image: user.avatarUrl ?? this.userEntityService.getIdenticonUrl(user),
 			feedLinks: {

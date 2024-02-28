@@ -250,7 +250,7 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 			if (ps.location !== undefined) profileUpdates.location = ps.location;
 			if (ps.birthday !== undefined) profileUpdates.birthday = ps.birthday;
 			if (ps.listenbrainz !== undefined) profileUpdates.listenbrainz = ps.listenbrainz;
-			if (ps.ffVisibility !== undefined) profileUpdates.ffVisibility = ps.ffVisibility;
+			// if (ps.ffVisibility !== undefined) profileUpdates.ffVisibility = ps.ffVisibility;
 			if (ps.mutedWords !== undefined) {
 				// TODO: ちゃんと数える
 				const length = JSON.stringify(ps.mutedWords).length;
