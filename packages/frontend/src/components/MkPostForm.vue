@@ -190,7 +190,6 @@ SPDX-License-Identifier: AGPL-3.0-only
 	])
 	type Flavor = keyof {[K in (typeof flavors)[number]]: string}
 	const serving = asLiterals([
-		'Black',
 		'Cold Brew',
 		'Iced',
 		'Pod',
@@ -760,6 +759,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 	}
 	
 	async function post(ev?: MouseEvent) {
+		console.info('Make a post')
 		if (useCw && (cw == null || cw.trim() === '')) {
 			os.alert({
 				type: 'error',
@@ -822,7 +822,15 @@ SPDX-License-Identifier: AGPL-3.0-only
 			visibleUserIds: visibility === 'specified' ? visibleUsers.map(u => u.id) : undefined,
 			reactionAcceptance,
 			editId: props.editId ? props.editId : undefined,
+			checkinCoffee,
+			checkinServing,
+			checkinLocation,
+			checkinRating: parseFloat(checkinRating),
+			coffeeBrandLogo,
+			coffeeBrandSource,
+			coffeeBrandClass,
 		};
+		console.log(postData)
 	
 		if (withHashtags && hashtags && hashtags.trim() !== '') {
 			const hashtags_ = hashtags.trim().split(' ').map(x => x.startsWith('#') ? x : '#' + x).join(' ');

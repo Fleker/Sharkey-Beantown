@@ -182,6 +182,34 @@ export const packedNoteSchema = {
 				optional: false, nullable: false,
 			},
 		},
+		checkinRating: {
+			type: 'number',
+			optional: true, nullable: false,
+		},
+		checkinLabel: {
+			type: 'string',
+			optional: true, nullable: false,
+		},
+		checkinLogo: {
+			type: 'string',
+			optional: true, nullable: false,
+		},
+		checkinSource: {
+			type: 'string',
+			optional: true, nullable: false,
+		},
+		checkinClass: {
+			type: 'string',
+			optional: true, nullable: false,
+		},
+		checkinServing: {
+			type: 'string',
+			optional: true, nullable: false,
+		},
+		checkinLocation: {
+			type: 'string',
+			optional: true, nullable: false,
+		},
 
 		myReaction: {
 			type: 'object',

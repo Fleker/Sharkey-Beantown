@@ -591,6 +591,7 @@ export class NoteCreateService implements OnApplicationShutdown {
 			checkinServing: data.checkinServing ?? null,
 			checkinLocation: data.checkinLocation ?? null,
 		});
+		console.log('insertNote', user, data)
 
 		if (data.uri != null) insert.uri = data.uri;
 		if (data.url != null) insert.url = data.url;

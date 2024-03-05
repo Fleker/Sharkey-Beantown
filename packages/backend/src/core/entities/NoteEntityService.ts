@@ -373,6 +373,13 @@ export class NoteEntityService implements OnModuleInit {
 			mentions: note.mentions && note.mentions.length > 0 ? note.mentions : undefined,
 			uri: note.uri ?? undefined,
 			url: note.url ?? undefined,
+			checkinClass: note.checkinClass ?? undefined,
+			checkinRating: note.checkinRating ?? undefined,
+			checkinLabel: note.checkinLabel ?? undefined,
+			checkinServing: note.checkinServing ?? undefined,
+			checkinLocation: note.checkinLocation ?? undefined,
+			checkinLogo: note.checkinLogo ?? undefined,
+			checkinSource: note.checkinSource ?? undefined,
 			poll: note.hasPoll ? this.populatePoll(note, meId) : undefined,
 			...(meId && Object.keys(note.reactions).length > 0 ? {
 				myReaction: this.populateMyReaction(note, meId, options?._hint_),
@@ -400,7 +407,7 @@ export class NoteEntityService implements OnModuleInit {
 		if (!opts.skipHide) {
 			await this.hideNote(packed, meId);
 		}
-
+		console.error('packaged', packed)
 		return packed;
 	}
 

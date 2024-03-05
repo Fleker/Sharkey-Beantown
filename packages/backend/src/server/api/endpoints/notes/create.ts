@@ -170,6 +170,34 @@ export const paramDef = {
 			},
 			required: ['choices'],
 		},
+		checkinRating: {
+			type: 'number',
+			nullable: false,
+		},
+		checkinCoffee: {
+			type: 'string',
+			nullable: false,
+		},
+		coffeeBrandLogo: {
+			type: 'string',
+			nullable: false,
+		},
+		coffeeBrandSource: {
+			type: 'string',
+			nullable: false,
+		},
+		coffeeBrandClass: {
+			type: 'string',
+			nullable: false,
+		},
+		checkinServing: {
+			type: 'string',
+			nullable: false,
+		},
+		checkinLocation: {
+			type: 'string',
+			nullable: false,
+		},
 	},
 	// (re)note with text, files and poll are optional
 	anyOf: [
@@ -203,6 +231,7 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 		private noteCreateService: NoteCreateService,
 	) {
 		super(meta, paramDef, async (ps, me) => {
+			console.log(' note/create', ps)
 			let visibleUsers: MiUser[] = [];
 			if (ps.visibleUserIds) {
 				visibleUsers = await this.usersRepository.findBy({
@@ -340,6 +369,13 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 				apMentions: ps.noExtractMentions ? [] : undefined,
 				apHashtags: ps.noExtractHashtags ? [] : undefined,
 				apEmojis: ps.noExtractEmojis ? [] : undefined,
+				checkinRating: ps.checkinRating,
+				checkinCoffee: ps.checkinCoffee,
+				coffeeBrandLogo: ps.coffeeBrandLogo,
+				coffeeBrandSource: ps.coffeeBrandSource,
+				coffeeBrandClass: ps.coffeeBrandClass,
+				checkinServing: ps.checkinServing,
+				checkinLocation: ps.checkinLocation,
 			});
 
 			return {
