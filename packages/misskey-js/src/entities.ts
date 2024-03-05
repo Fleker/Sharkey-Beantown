@@ -232,6 +232,13 @@ export type Note = {
 	uri?: string;
 	url?: string;
 	isHidden?: boolean;
+	checkinCoffee: string;
+	checkinServing: string;
+	checkinLocation: string;
+	checkinRating: number;
+	coffeeBrandLogo: string;
+	coffeeBrandSource: string;
+	coffeeBrandClass: string;
 };
 
 export type NoteReaction = {

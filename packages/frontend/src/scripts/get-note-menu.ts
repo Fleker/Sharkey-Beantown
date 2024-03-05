@@ -176,7 +176,20 @@ export function getNoteMenu(props: {
 				noteId: appearNote.id,
 			});
 
-			os.post({ initialNote: appearNote, renote: appearNote.renote, reply: appearNote.reply, channel: appearNote.channel });
+			console.info(appearNote)
+			os.post({
+				initialNote: appearNote,
+				renote: appearNote.renote,
+				reply: appearNote.reply,
+				channel: appearNote.channel,
+				checkinCoffee: appearNote.checkinCoffee,
+				checkinServing: appearNote.checkinServing,
+				checkinLocation: appearNote.checkinLocation,
+				checkinRating: appearNote.checkinRating,
+				coffeeBrandLogo: appearNote.coffeeBrandLogo,
+				coffeeBrandSource: appearNote.coffeeBrandSource,
+				coffeeBrandClass: appearNote.coffeeBrandClass,
+			});
 
 			if (Date.now() - new Date(appearNote.createdAt).getTime() < 1000 * 60) {
 				claimAchievement('noteDeletedWithin1min');
@@ -185,6 +198,8 @@ export function getNoteMenu(props: {
 	}
 
 	function edit(): void {
+		console.info(appearNote)
+
 		os.post({
 			initialNote: appearNote,
 			renote: appearNote.renote,
@@ -192,6 +207,13 @@ export function getNoteMenu(props: {
 			channel: appearNote.channel,
 			editId: appearNote.id,
 			initialFiles: appearNote.files,
+			checkinCoffee: appearNote.checkinCoffee,
+			checkinServing: appearNote.checkinServing,
+			checkinLocation: appearNote.checkinLocation,
+			checkinRating: appearNote.checkinRating,
+			coffeeBrandLogo: appearNote.coffeeBrandLogo,
+			coffeeBrandSource: appearNote.coffeeBrandSource,
+			coffeeBrandClass: appearNote.coffeeBrandClass,
 		});
 	}
 

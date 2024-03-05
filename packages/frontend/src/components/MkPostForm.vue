@@ -68,22 +68,24 @@ SPDX-License-Identifier: AGPL-3.0-only
 		<input v-show="useCw" ref="cwInputEl" v-model="cw" :class="$style.cw" :placeholder="i18n.ts.annotation" @keydown="onKeydown">
 		<div :class="[$style.textOuter, { [$style.withCw]: useCw }]">
 			<input v-show="!reply && !renote" ref="coffeesInputEl" v-model="checkinCoffee" :class="$style.hashtags" placeholder="Coffee Name" list="coffees" @input="updateBranding" />
-			<div>
+			<div v-show="!reply && !renote">
 				<img :src="coffeeBrandLogo" style="width:24px; height:24px; vertical-align: sub;"/>
 				<span>{{ coffeeBrandSource }}</span>: 
 				<span>{{ coffeeBrandClass }}</span>
 			</div>
 			<input v-show="!reply && !renote" ref="ratingsInputEl" v-model="checkinRating" :class="$style.hashtags" placeholder="Score" type="range" min="0.25" max="5" step="0.25" style="display: inline-block; width: calc(100% - 4em);"/>
-			<span style="display:inline-block; vertical-align:top">
+			<span v-show="!reply && !renote" style="display:inline-block; vertical-align:top">
 				{{ checkinRating }}
 			</span>
 			<textarea ref="textareaEl" v-model="text" :class="[$style.text]" :disabled="posting || posted" :placeholder="placeholder" data-cy-post-form-text @keydown="onKeydown" @paste="onPaste" @compositionupdate="onCompositionUpdate" @compositionend="onCompositionEnd"/>
-			Served
-			<select v-show="!reply && !renote" v-model="checkinServing">
-					<option v-for="item in serving">{{ item }}</option>
-			</select>
-			at
-			<input v-show="!reply && !renote" type="search" placeholder="Location" v-model="checkinLocation" />
+			<div v-show="!reply && !renote">
+				Served
+				<select v-show="!reply && !renote" v-model="checkinServing">
+						<option v-for="item in serving">{{ item }}</option>
+				</select>
+				at
+				<input v-show="!reply && !renote" type="search" placeholder="Location" v-model="checkinLocation" />
+			</div>
 			<div v-if="maxTextLength - textLength < 100" :class="['_acrylic', $style.textCount, { [$style.textOver]: textLength > maxTextLength }]">{{ maxTextLength - textLength }}</div>
 		</div>
 		<input v-show="!reply && !renote" ref="hashtagsInputEl" v-model="hashtags" :class="$style.hashtags" :placeholder="i18n.ts.hashtags" list="hashtags">
@@ -328,7 +330,8 @@ SPDX-License-Identifier: AGPL-3.0-only
 			(!poll || poll.choices.length >= 2);
 	});
 	
-	const withHashtags = $computed(defaultStore.makeGetterSetter('postFormWithHashtags'));
+	// const withHashtags = $computed(defaultStore.makeGetterSetter('postFormWithHashtags'));
+	const withHashtags = true;
 	const hashtags = $computed(defaultStore.makeGetterSetter('postFormHashtags'));
 	
 	watch($$(text), () => {
@@ -822,14 +825,22 @@ SPDX-License-Identifier: AGPL-3.0-only
 			visibleUserIds: visibility === 'specified' ? visibleUsers.map(u => u.id) : undefined,
 			reactionAcceptance,
 			editId: props.editId ? props.editId : undefined,
-			checkinCoffee,
-			checkinServing,
-			checkinLocation,
-			checkinRating: parseFloat(checkinRating),
-			coffeeBrandLogo,
-			coffeeBrandSource,
-			coffeeBrandClass,
 		};
+		if (checkinCoffee) {
+			postData['checkinCoffee'] = checkinCoffee
+			postData['checkinServing'] = checkinServing
+			postData['checkinLocation'] = checkinLocation
+			postData['checkinRating'] = parseFloat(checkinRating)
+			postData['coffeeBrandLogo'] = coffeeBrandLogo
+			postData['coffeeBrandSource'] = coffeeBrandSource
+			postData['coffeeBrandClass'] = coffeeBrandClass
+		} else if (!props.reply && !props.renote) {
+			os.alert({
+				type: 'error',
+				text: 'Cannot post without checkin',
+			});
+			return
+		}
 		console.log(postData)
 	
 		if (withHashtags && hashtags && hashtags.trim() !== '') {
@@ -1003,7 +1014,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 				}
 			}
 	
-			// 削除して編集
+			// We are probably editing a post
 			if (props.initialNote) {
 				const init = props.initialNote;
 				text = init.text ? init.text : '';
@@ -1021,6 +1032,14 @@ SPDX-License-Identifier: AGPL-3.0-only
 				visibility = init.visibility;
 				localOnly = init.localOnly;
 				quoteId = init.renote ? init.renote.id : null;
+				checkinCoffee = init.checkinLabel;
+				checkinServing = init.checkinServing;
+				checkinLocation = init.checkinLocation;
+				checkinRating = init.checkinRating;
+				coffeeBrandLogo = init.checkinLogo;
+				coffeeBrandSource = init.checkinSource;
+				coffeeBrandClass = init.checkinClass;
+				console.log('initialnote', init)
 			}
 	
 			nextTick(() => watchForDraft());
