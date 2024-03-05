@@ -177,8 +177,11 @@ SPDX-License-Identifier: AGPL-3.0-only
 	// https://github.com/Fleker/pokemon-as-a-service/blob/main/shared/src/as-literals.ts
 	function asLiterals<T extends string>(arr: T[]): T[] { return arr; }
 	const flavors = asLiterals([
+		'Acidic',
 		'Bitter',
+		'Bold',
 		'Boozy',
+		'Bright',
 		'Caramel',
 		'Chocolate',
 		'Cinnamon',
@@ -186,24 +189,64 @@ SPDX-License-Identifier: AGPL-3.0-only
 		'Dark',
 		'Ginger',
 		'Gingerbread',
+		'Floral',
 		'Fruity',
+		'Nutty',
+		'Smoky',
+		'Smooth',
 		'Sweet',
+		'Tea',
 		'Vanilla',
+		'Woody',
 	])
 	type Flavor = keyof {[K in (typeof flavors)[number]]: string}
 	const serving = asLiterals([
+		'Drip',
 		'Cold Brew',
 		'Iced',
 		'Pod',
-		'Drip',
+		'Pour-Over',
 		'French Press',
 		'Espresso',
+		'Turkish',
 	])
 	type ServingType = keyof {[K in (typeof serving)[number]]: string}
 	const classification = asLiterals([
-		'Light Roast',
-		'Medium Roast',
-		'Dark Roast',
+		// 'Light Roast',
+		// 'Medium Roast',
+		// 'Dark Roast',
+		/**
+		 * Dominant cultivar, from Ethiopia et al
+		 * https://en.wikipedia.org/wiki/Coffea_arabica
+		 */
+		'Arabica',
+		/**
+		 * Popular cultivar, from west Africa
+		 * https://en.wikipedia.org/wiki/Coffea_canephora
+		 */
+		'Robusta',
+		/**
+		 * Rarer, from West Africa, South America, Pacific Islands
+		 * https://en.wikipedia.org/wiki/Coffea_liberica
+		 */
+		'Liberica',
+		// Same as Liberica
+		// 'Excelsa',
+		/**
+		 * Sierra Leone coffee, novel cultivar
+		 * https://en.wikipedia.org/wiki/Coffea_stenophylla
+		 */
+		'Stenophylla',
+		/**
+		 * Naturally decafinated coffee
+		 * https://en.wikipedia.org/wiki/Coffea_charrieriana
+		 */
+		'Charrier',
+		/**
+		 * Rare form of low-caffeine coffee
+		 * https://en.wikipedia.org/wiki/Coffea_racemosa
+		 */
+		'Racemosa',
 	])
 	type ClassificationType = keyof {[K in (typeof classification)[number]]: string}
 	interface CoffeeDb {
@@ -215,8 +258,8 @@ SPDX-License-Identifier: AGPL-3.0-only
 	}
 	const coffees: CoffeeDb[] = [{
 		id: 'starbucks0',
-		label: 'Starbucks Roast',
-		classification: 'Dark Roast',
+		label: 'Starbucks Blonde Roast',
+		classification: 'Arabica',
 		source: 'Starbucks',
 		icon: 'https://www.starbucks.com/next_static/icons/pwa-icon-192.png',
 	}]
