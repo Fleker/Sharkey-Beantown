@@ -13,14 +13,6 @@ SPDX-License-Identifier: AGPL-3.0-only
 		<template #caption>{{ i18n.ts.makeReactionsPublicDescription }}</template>
 	</MkSwitch>
 
-	<MkSelect v-model="ffVisibility" @update:modelValue="save()">
-		<template #label>{{ i18n.ts.ffVisibility }}</template>
-		<option value="public">{{ i18n.ts._ffVisibility.public }}</option>
-		<option value="followers">{{ i18n.ts._ffVisibility.followers }}</option>
-		<option value="private">{{ i18n.ts._ffVisibility.private }}</option>
-		<template #caption>{{ i18n.ts.ffVisibilityDescription }}</template>
-	</MkSelect>
-
 	<MkSwitch v-model="hideOnlineStatus" @update:modelValue="save()">
 		{{ i18n.ts.hideOnlineStatus }}
 		<template #caption>{{ i18n.ts.hideOnlineStatusDescription }}</template>
@@ -84,7 +76,6 @@ let isExplorable = $ref($i.isExplorable);
 let noindex = $ref($i.noindex);
 let hideOnlineStatus = $ref($i.hideOnlineStatus);
 let publicReactions = $ref($i.publicReactions);
-let ffVisibility = $ref($i.ffVisibility);
 
 let defaultNoteVisibility = $computed(defaultStore.makeGetterSetter('defaultNoteVisibility'));
 let defaultNoteLocalOnly = $computed(defaultStore.makeGetterSetter('defaultNoteLocalOnly'));
@@ -100,7 +91,6 @@ function save() {
 		noindex: !!noindex,
 		hideOnlineStatus: !!hideOnlineStatus,
 		publicReactions: !!publicReactions,
-		ffVisibility: ffVisibility,
 	});
 }
 
