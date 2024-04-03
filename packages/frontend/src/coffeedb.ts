@@ -131,8 +131,8 @@ export const coffees: CoffeeDb[] = [{
   label: 'Starbucks Blonde Roast',
   classification: 'Arabica',
   source: 'Starbucks',
-  icon: 'http://beantown.space/client-assets/logos/starbucks.png',
-}, ...brandCoffees('Counter Culture', 'http://beantown.space/client-assets/logos/counterculture.png', [{
+  icon: 'https://beantown.space/client-assets/logos/starbucks.png',
+}, ...brandCoffees('Counter Culture', 'https://beantown.space/client-assets/logos/counterculture.png', [{
     label: 'Intango',
     classification: 'Dark Roast',
   }, {
@@ -180,5 +180,63 @@ export const coffees: CoffeeDb[] = [{
   }, {
     label: 'Decaf Urcunina',
     classification: 'Medium Light Roast',
+  }]),
+  ...brandCoffees('Victor Allen', 'https://beantown.space/client-assets/logos/victor-allen.png', [{
+    label: 'Brazil Primo',
+    classification: 'Arabica'
+  }, {
+    label: 'Hawaiian Blend',
+    classification: 'Arabica',
+  }, {
+    label: 'Keyna Supreme',
+    classification: 'Arabica',
+  }, {
+    label: 'Papua New Guinea',
+    classification: 'Arabica',
+  }, {
+    label: '100% Columbian',
+    classification: 'Medium Roast',
+  }, {
+    label: 'Caramel Macchiato',
+    classification: 'Medium Roast',
+  }, {
+    label: 'Donut Shop Blend',
+    classification: 'Medium Roast',
+  }, {
+    label: 'Morning Blend',
+    classification: 'Light Roast',
+  }, {
+    label: 'Hazelnut',
+    classification: 'Medium Roast',
+  }, {
+    label: 'Seattle Dark',
+    classification: 'Dark Roast',
+  }, {
+    label: 'Italian Roast',
+    classification: 'Dark Roast',
+  }, {
+    label: 'French Roast',
+    classification: 'Dark Roast',
+  }, {
+    label: 'French Vanilla',
+    classification: 'Arabica',
+  }, {
+    label: 'Sweet & Salty Caramel',
+    classification: 'Arabica',
+  }, {
+    label: 'White Chocolate Caramel',
+    classification: 'Arabica',
+  }, {
+    label: 'Pumpkin Spice',
+    classification: 'Medium Roast',
+  }, {
+    label: 'Peppermint Bark',
+    classification: 'Medium Roast',
+  }, {
+    label: 'Organic Peruvian',
+    classification: 'Medium Roast'
+  }, {
+    label: 'Buffalo Trace Natural Bourbon',
+    classification: 'Medium Roast',
   }])
 ]
