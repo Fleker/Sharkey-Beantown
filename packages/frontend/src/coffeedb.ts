@@ -109,7 +109,7 @@ export const classification = asLiterals([
 ])
 type ClassificationType = keyof {[K in (typeof classification)[number]]: string}
 
-interface CoffeeDb {
+export interface CoffeeDb {
   id: string
   label: string
   classification: ClassificationType
@@ -117,126 +117,21 @@ interface CoffeeDb {
   icon: string
 }
 
-function brandCoffees(source: string, icon: string, products: {label: string, classification: ClassificationType}[]): CoffeeDb[] {
-  return products.map(p => ({
-    ...p,
-    source,
-    icon,
-    id: `${source}-${p.label.replace(/\s/g, '')}`,
-  }))
-}
+let coffees: CoffeeDb[] = []
+/**
+ * # Sort results by id in descending order, take two
+# and return the age as an integer.
 
-export const coffees: CoffeeDb[] = [{
-  id: 'starbucks0',
-  label: 'Starbucks Blonde Roast',
-  classification: 'Arabica',
-  source: 'Starbucks',
-  icon: 'https://beantown.space/client-assets/logos/starbucks.png',
-}, ...brandCoffees('Counter Culture', 'https://beantown.space/client-assets/logos/counterculture.png', [{
-    label: 'Intango',
-    classification: 'Dark Roast',
-  }, {
-    label: 'Cueva de los Llanos',
-    classification: 'Light Roast',
-  }, {
-    label: 'Mpemba',
-    classification: 'Light Roast',
-  }, {
-    label: 'Eladio Chamba Anaerobic Washed',
-    classification: 'Light Roast',
-  }, {
-    label: 'Valle Del Santuario',
-    classification: 'Light Roast',
-  }, {
-    label: 'Mpemba - Natural Sundried',
-    classification: 'Light Roast',
-  }, {
-    label: 'Nuevo Amanecer',
-    classification: 'Light Roast',
-  }, {
-    label: 'La Golondrina',
-    classification: 'Light Roast',
-  }, {
-    label: 'Big Trouble',
-    classification: 'Medium Dark Roast',
-  }, {
-    label: 'Hologram',
-    classification: 'Medium Roast',
-  }, {
-    label: 'Apollo',
-    classification: 'Medium Roast',
-  }, {
-    label: 'Fast Forward',
-    classification: 'Medium Roast',
-  }, {
-    label: 'Gradient',
-    classification: 'Dark Roast',
-  }, {
-    label: 'Forty-Six',
-    classification: 'Dark Roast',
-  }, {
-    label: 'Slow Motion',
-    classification: 'Medium Roast',
-  }, {
-    label: 'Decaf Urcunina',
-    classification: 'Medium Light Roast',
-  }]),
-  ...brandCoffees('Victor Allen', 'https://beantown.space/client-assets/logos/victor-allen.png', [{
-    label: 'Brazil Primo',
-    classification: 'Arabica'
-  }, {
-    label: 'Hawaiian Blend',
-    classification: 'Arabica',
-  }, {
-    label: 'Keyna Supreme',
-    classification: 'Arabica',
-  }, {
-    label: 'Papua New Guinea',
-    classification: 'Arabica',
-  }, {
-    label: '100% Columbian',
-    classification: 'Medium Roast',
-  }, {
-    label: 'Caramel Macchiato',
-    classification: 'Medium Roast',
-  }, {
-    label: 'Donut Shop Blend',
-    classification: 'Medium Roast',
-  }, {
-    label: 'Morning Blend',
-    classification: 'Light Roast',
-  }, {
-    label: 'Hazelnut',
-    classification: 'Medium Roast',
-  }, {
-    label: 'Seattle Dark',
-    classification: 'Dark Roast',
-  }, {
-    label: 'Italian Roast',
-    classification: 'Dark Roast',
-  }, {
-    label: 'French Roast',
-    classification: 'Dark Roast',
-  }, {
-    label: 'French Vanilla',
-    classification: 'Arabica',
-  }, {
-    label: 'Sweet & Salty Caramel',
-    classification: 'Arabica',
-  }, {
-    label: 'White Chocolate Caramel',
-    classification: 'Arabica',
-  }, {
-    label: 'Pumpkin Spice',
-    classification: 'Medium Roast',
-  }, {
-    label: 'Peppermint Bark',
-    classification: 'Medium Roast',
-  }, {
-    label: 'Organic Peruvian',
-    classification: 'Medium Roast'
-  }, {
-    label: 'Buffalo Trace Natural Bourbon',
-    classification: 'Medium Roast',
-  }])
-]
+curl -G https://sheetdb.io/api/v1/dp7qo0mym1b0d \
+  -d sort_by=id \
+  -d sort_order=desc \
+  -d limit=2 \
+  -d cast_numbers=age
+
+ */
+export async function loadCoffees() {
+  if (coffees.length) return coffees
+  const res = await fetch('https://sheetdb.io/api/v1/dp7qo0mym1b0d')
+  coffees = await res.json()
+  return coffees
+}

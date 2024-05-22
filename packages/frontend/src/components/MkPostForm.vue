@@ -147,7 +147,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 	import MkRippleEffect from '@/components/MkRippleEffect.vue';
 	import { miLocalStorage } from '@/local-storage.js';
 	import { claimAchievement } from '@/scripts/achievements.js';
-	import { coffees, serving, flavors } from '@/coffeedb.js';
+	import { loadCoffees, CoffeeDb, serving, flavors } from '@/coffeedb.js';
 
 	const modal = inject('modal');
 	
@@ -219,6 +219,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 	let recentHashtags = $ref(JSON.parse(miLocalStorage.getItem('hashtags') ?? '[]'));
 	let imeText = $ref('');
 	let showingOptions = $ref(false);
+	let coffees = $ref<CoffeeDb[]>([]);
 	let checkinCoffee = $ref<string|null>(null);
 	let checkinServing = $ref<string|null>(null);
 	let checkinLocation = $ref<string|null>(null);
@@ -997,6 +998,10 @@ SPDX-License-Identifier: AGPL-3.0-only
 			}
 	
 			nextTick(() => watchForDraft());
+
+			loadCoffees().then(c => {
+				coffees = c
+			})
 		});
 	});
 	
