@@ -24,7 +24,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 	
 		<button v-if="!isDesktop && !isMobile" :class="$style.widgetButton" class="_button" @click="widgetsShowing = true" style="display:none"><i class="ph-squares-four ph-bold ph-lg"></i></button>
 	
-		<div v-if="isMobile" ref="navFooter" :class="$style.nav" style="display:none">
+		<div v-if="isMobile" ref="navFooter" :class="$style.nav">
 			<button :class="$style.navButton" class="_button" @click="drawerMenuShowing = true"><i :class="$style.navButtonIcon" class="ph-list ph-bold ph-lg-2"></i><span v-if="menuIndicated" :class="$style.navButtonIndicator"><i class="_indicatorCircle"></i></span></button>
 			<button :class="$style.navButton" class="_button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/')"><i :class="$style.navButtonIcon" class="ph-house ph-bold ph-lg"></i></button>
 			<button :class="$style.navButton" class="_button" @click="mainRouter.push('/my/notifications')">
@@ -33,7 +33,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 					<span class="_indicateCounter" :class="$style.itemIndicateValueIcon">{{ $i.unreadNotificationsCount > 99 ? '99+' : $i.unreadNotificationsCount }}</span>
 				</span>
 			</button>
-			<button :class="$style.navButton" class="_button" @click="widgetsShowing = true"><i :class="$style.navButtonIcon" class="ph-squares-four ph-bold ph-lg"></i></button>
+			<!-- <button :class="$style.navButton" class="_button" @click="widgetsShowing = true"><i :class="$style.navButtonIcon" class="ph-squares-four ph-bold ph-lg"></i></button> -->
 			<button :class="$style.postButton" class="_button" @click="os.post()"><i :class="$style.navButtonIcon" class="ph-pencil ph-bold ph-lg"></i></button>
 		</div>
 	
