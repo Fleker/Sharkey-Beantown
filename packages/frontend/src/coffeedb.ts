@@ -109,7 +109,7 @@ export const classification = asLiterals([
 ])
 type ClassificationType = keyof {[K in (typeof classification)[number]]: string}
 
-export interface CoffeeDb {
+interface CoffeeDb {
   id: string
   label: string
   classification: ClassificationType
@@ -118,20 +118,11 @@ export interface CoffeeDb {
 }
 
 let coffees: CoffeeDb[] = []
-/**
- * # Sort results by id in descending order, take two
-# and return the age as an integer.
 
-curl -G https://sheetdb.io/api/v1/dp7qo0mym1b0d \
-  -d sort_by=id \
-  -d sort_order=desc \
-  -d limit=2 \
-  -d cast_numbers=age
-
- */
+import * as os from '@/os.js';
 export async function loadCoffees() {
   if (coffees.length) return coffees
-  const res = await fetch('https://sheetdb.io/api/v1/dp7qo0mym1b0d')
-  coffees = await res.json()
+  const res = await os.api('checkinables/list')
+  coffees = res
   return coffees
 }

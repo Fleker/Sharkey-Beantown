@@ -373,6 +373,9 @@ import * as ep___fetchRss from './endpoints/fetch-rss.js';
 import * as ep___fetchExternalResources from './endpoints/fetch-external-resources.js';
 import * as ep___retention from './endpoints/retention.js';
 import * as ep___sponsors from './endpoints/sponsors.js';
+import * as ep___checkinables_list from './endpoints/checkinables/list.js';
+import * as ep___checkinables_create from './endpoints/checkinables/create.js';
+import * as ep___checkinables_delete from './endpoints/checkinables/delete.js';
 
 const eps = [
 	['admin/meta', ep___admin_meta],
@@ -742,6 +745,9 @@ const eps = [
 	['fetch-external-resources', ep___fetchExternalResources],
 	['retention', ep___retention],
 	['sponsors', ep___sponsors],
+	['checkinables/list', ep___checkinables_list],
+	['checkinables/create', ep___checkinables_create],
+	['checkinables/delete', ep___checkinables_delete],
 ];
 
 export interface IEndpointMeta {

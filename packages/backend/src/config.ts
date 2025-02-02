@@ -200,6 +200,19 @@ export function loadConfig(): Config {
 	const hostname = url.hostname;
 	const scheme = url.protocol.replace(/:$/, '');
 	const wsScheme = scheme.replace('http', 'ws');
+	console.info('------ LOADED CONFIG ------')
+	console.info(`url:       ${url.toString()}`)
+	console.info(`origin:    ${url.origin}`)
+	console.info(`version:   ${version}`)
+	console.info(`host:      ${host}`)
+	console.info(`hostname:  ${hostname}`)
+	console.info(`scheme:    ${scheme}`)
+	console.info(`wsScheme:  ${wsScheme}`)
+	const port = config.port ?? parseInt(process.env.PORT ?? '', 10)
+	console.info(`port:  ${port}`)
+	console.info('---------------------------')
+	config.url = config.url.replace('http:', 'https:')
+	// url.origin = url.origin.replace('http:', 'https:')
 
 	const externalMediaProxy = config.mediaProxy ?
 		config.mediaProxy.endsWith('/') ? config.mediaProxy.substring(0, config.mediaProxy.length - 1) : config.mediaProxy
@@ -210,7 +223,8 @@ export function loadConfig(): Config {
 	return {
 		version,
 		url: url.origin,
-		port: config.port ?? parseInt(process.env.PORT ?? '', 10),
+		port,
+		// port: 3002,
 		socket: config.socket,
 		chmodSocket: config.chmodSocket,
 		disableHsts: config.disableHsts,

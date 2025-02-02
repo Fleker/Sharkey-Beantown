@@ -38,6 +38,7 @@ import { MiInstance } from '@/models/Instance.js';
 import { MiMeta } from '@/models/Meta.js';
 import { MiModerationLog } from '@/models/ModerationLog.js';
 import { MiMuting } from '@/models/Muting.js';
+import { Checkinable } from '@/models/Checkinable.js';
 import { MiRenoteMuting } from '@/models/RenoteMuting.js';
 import { MiNote } from '@/models/Note.js';
 import { MiNoteFavorite } from '@/models/NoteFavorite.js';
@@ -147,6 +148,7 @@ export const entities = [
 	MiFollowing,
 	MiFollowRequest,
 	MiMuting,
+	Checkinable,
 	MiRenoteMuting,
 	MiBlocking,
 	MiNote,

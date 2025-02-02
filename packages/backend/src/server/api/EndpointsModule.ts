@@ -373,6 +373,9 @@ import * as ep___fetchRss from './endpoints/fetch-rss.js';
 import * as ep___fetchExternalResources from './endpoints/fetch-external-resources.js';
 import * as ep___retention from './endpoints/retention.js';
 import * as ep___sponsors from './endpoints/sponsors.js';
+import * as ep___checkinables_list from './endpoints/checkinables/list.js';
+import * as ep___checkinables_create from './endpoints/checkinables/create.js';
+import * as ep___checkinables_delete from './endpoints/checkinables/delete.js';
 import { GetterService } from './GetterService.js';
 import { ApiLoggerService } from './ApiLoggerService.js';
 import type { Provider } from '@nestjs/common';
@@ -744,6 +747,9 @@ const $fetchRss: Provider = { provide: 'ep:fetch-rss', useClass: ep___fetchRss.d
 const $fetchExternalResources: Provider = { provide: 'ep:fetch-external-resources', useClass: ep___fetchExternalResources.default };
 const $retention: Provider = { provide: 'ep:retention', useClass: ep___retention.default };
 const $sponsors: Provider = { provide: 'ep:sponsors', useClass: ep___sponsors.default };
+const $checkinables_list: Provider = { provide: 'ep:checkinables/list', useClass: ep___checkinables_list.default };
+const $checkinables_create: Provider = { provide: 'ep:checkinables/create', useClass: ep___checkinables_create.default };
+const $checkinables_delete: Provider = { provide: 'ep:checkinables/delete', useClass: ep___checkinables_delete.default };
 
 @Module({
 	imports: [
@@ -1119,6 +1125,9 @@ const $sponsors: Provider = { provide: 'ep:sponsors', useClass: ep___sponsors.de
 		$fetchExternalResources,
 		$retention,
 		$sponsors,
+		$checkinables_list,
+		$checkinables_create,
+		$checkinables_delete,
 	],
 	exports: [
 		$admin_meta,
@@ -1485,6 +1494,9 @@ const $sponsors: Provider = { provide: 'ep:sponsors', useClass: ep___sponsors.de
 		$fetchExternalResources,
 		$retention,
 		$sponsors,
+		$checkinables_list,
+		$checkinables_create,
+		$checkinables_delete,
 	],
 })
 export class EndpointsModule {}

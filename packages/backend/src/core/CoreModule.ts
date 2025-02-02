@@ -111,6 +111,7 @@ import { UserListEntityService } from './entities/UserListEntityService.js';
 import { FlashEntityService } from './entities/FlashEntityService.js';
 import { FlashLikeEntityService } from './entities/FlashLikeEntityService.js';
 import { RoleEntityService } from './entities/RoleEntityService.js';
+import { CheckinableEntityService } from './entities/CheckinableEntityService.js';
 import { ApAudienceService } from './activitypub/ApAudienceService.js';
 import { ApDbResolverService } from './activitypub/ApDbResolverService.js';
 import { ApDeliverManagerService } from './activitypub/ApDeliverManagerService.js';
@@ -245,6 +246,7 @@ const $UserListEntityService: Provider = { provide: 'UserListEntityService', use
 const $FlashEntityService: Provider = { provide: 'FlashEntityService', useExisting: FlashEntityService };
 const $FlashLikeEntityService: Provider = { provide: 'FlashLikeEntityService', useExisting: FlashLikeEntityService };
 const $RoleEntityService: Provider = { provide: 'RoleEntityService', useExisting: RoleEntityService };
+const $CheckinableEntityService: Provider = { provide: 'CheckinableEntityService', useExisting: CheckinableEntityService };
 
 const $ApAudienceService: Provider = { provide: 'ApAudienceService', useExisting: ApAudienceService };
 const $ApDbResolverService: Provider = { provide: 'ApDbResolverService', useExisting: ApDbResolverService };
@@ -379,6 +381,7 @@ const $ApQuestionService: Provider = { provide: 'ApQuestionService', useExisting
 		FlashEntityService,
 		FlashLikeEntityService,
 		RoleEntityService,
+		CheckinableEntityService,
 		ApAudienceService,
 		ApDbResolverService,
 		ApDeliverManagerService,
@@ -508,6 +511,7 @@ const $ApQuestionService: Provider = { provide: 'ApQuestionService', useExisting
 		$FlashEntityService,
 		$FlashLikeEntityService,
 		$RoleEntityService,
+		$CheckinableEntityService,
 		$ApAudienceService,
 		$ApDbResolverService,
 		$ApDeliverManagerService,
@@ -637,6 +641,7 @@ const $ApQuestionService: Provider = { provide: 'ApQuestionService', useExisting
 		FlashEntityService,
 		FlashLikeEntityService,
 		RoleEntityService,
+		CheckinableEntityService,
 		ApAudienceService,
 		ApDbResolverService,
 		ApDeliverManagerService,
@@ -765,6 +770,7 @@ const $ApQuestionService: Provider = { provide: 'ApQuestionService', useExisting
 		$FlashEntityService,
 		$FlashLikeEntityService,
 		$RoleEntityService,
+		$CheckinableEntityService,
 		$ApAudienceService,
 		$ApDbResolverService,
 		$ApDeliverManagerService,

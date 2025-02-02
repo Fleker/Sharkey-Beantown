@@ -453,6 +453,10 @@ export const routes = [{
 		name: 'approvals',
 		component: page(() => import('./pages/admin/approvals.vue')),
 	}, {
+		path: '/checkinables',
+		name: 'checkinables',
+		component: page(() => import('./pages/admin/checkinable.vue')),
+	}, {
 		path: '/',
 		component: page(() => import('./pages/_empty_.vue')),
 	}],
